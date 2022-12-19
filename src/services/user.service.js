@@ -59,25 +59,17 @@ const getRatebyUser = async(userId)=>{
 //order
 const orderFoods = async(data)=>{
     try {
-        // const {resId,userId,foodId} = data;
-        console.log("data:",data);
-        // const orderId = Order.orderId;
-        // const res = await Restaurant.findOne({where:{id:data.resId}});
-        // const user = await User.findOne({where:{id:data.userId}});
-        const food = await Food.findByPk(data.foodId);
-        console.log(food);
-        // if(!res){
-        //     throw new AppError(400,"Restaurant not found");
-        // };
-        // if(!user){
-        //     throw new AppError(400,"User not found");
-        // };
-        // if(!food){
-        //     throw new AppError(400,"Food is not available");
-        // };
-        // console.log("proto res",res.__proto__);
+        const {amount} = data;
+        const user = await User.findOne({where:{userId:data.userId}});
+        const food = await Food.findOne({where:{foodId:data.foodId}});
+        if(!user){
+            throw new AppError(400,"User not found");
+        };
+        if(!food){
+            throw new AppError(400,"Food is not available");
+        };
         // console.log("proto user",user.__proto__);
-        // console.log("proto food",food.__proto__);
+        await user.addOrder(data.foodId,{through:{amount:amount}});
         return null;
     } catch (error) {
         throw error;

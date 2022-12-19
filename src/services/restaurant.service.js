@@ -1,4 +1,4 @@
-const {Restaurant,User,LikeRes} = require('../models');
+const {Restaurant,User} = require('../models');
 
 const {AppError} = require('../helpers/error');
 // like-unlike
@@ -13,11 +13,11 @@ const likeUnlikeRes = async(userId,resId) =>{
             throw new AppError(400,'User not found');
         };
 
-        const hadLike = await res.hasUserLike(user.id);
+        const hadLike = await res.hasUserLike(user.userId);
         if(hadLike){
-            await res.removeUserLike(user.id);
+            await res.removeUserLike(user.userId);
         }else{
-            await res.addUserLike(user.id);
+            await res.addUserLike(user.userId);
         }
 
         return null;

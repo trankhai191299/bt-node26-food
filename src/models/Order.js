@@ -4,19 +4,16 @@ module.exports = (sequelize) => {
   return sequelize.define(
     "Order",
     {
-      orderId: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true,
-        field:'order_id',
-      },
       userId: {
         type: DataTypes.INTEGER,
         field:'user_id',
       },
-      totalPrice: {
-        type: DataTypes.FLOAT,
-        field:'total_price',
+      foodId:{
+        type: DataTypes.INTEGER,
+        field:'food_id',
+      },
+      amount: {
+        type: DataTypes.INTEGER,
       },
     },
     {

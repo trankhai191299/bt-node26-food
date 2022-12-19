@@ -13,6 +13,6 @@ v1.get('/res/:resId/like',resController.getLike()); //get like by restaurant
 v1.post('/res/:resId/rate',resController.rateRes()); // rate rés
 v1.get('/res/:resId/rate',resController.getRate()); // get rate by restaurant
 //order
-v1.post('/users/order',userController.orderFood()); // order - not finished
+v1.post('/users/order',userController.orderFood()); // order
 //-------------------------------------------//
 module.exports = v1;

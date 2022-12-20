@@ -62,6 +62,7 @@ const orderFoods = async(data)=>{
         const {amount} = data;
         const user = await User.findOne({where:{userId:data.userId}});
         const food = await Food.findOne({where:{foodId:data.foodId}});
+        const codeOrder = Math.random().toString(36).substring(2);
         if(!user){
             throw new AppError(400,"User not found");
         };
@@ -69,7 +70,7 @@ const orderFoods = async(data)=>{
             throw new AppError(400,"Food is not available");
         };
         // console.log("proto user",user.__proto__);
-        await user.addOrder(data.foodId,{through:{amount:amount}});
+        await user.addOrder(data.foodId,{through:{amount:amount,code:codeOrder}});
         return null;
     } catch (error) {
         throw error;

@@ -15,6 +15,9 @@ module.exports = (sequelize) => {
       amount: {
         type: DataTypes.INTEGER,
       },
+      code:{
+        type: DataTypes.STRING,
+      }
     },
     {
       tableName: "orders",
